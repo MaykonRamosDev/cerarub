@@ -17,15 +17,14 @@ Realizar revisão geral do código e validar o funcionamento das principais func
 ## Funcionalidades a Testar
 
 ### 📋 Cadastro e Login
-- [ ] Cadastro de novo usuário (cliente/cuidador)
-- [ ] Login com email/senha
-- [ ] Login com Google
-- [ ] Recuperação de senha
+- [x] Cadastro de novo usuário (cliente/cuidador)
+- [x] Login com email/senha
+- [x] Recuperação de senha
 
 ### 👥 Perfis e Permissões
-- [ ] Visualização do perfil (público/privado)
-- [ ] Edição de informações do perfil
-- [ ] Controle de permissões (cliente/cuidador)
+- [x] Visualização do perfil (público/privado)
+- [x] Edição de informações do perfil
+- [x] Controle de permissões (cliente/cuidador)
 
 ### 🔍 Busca e Filtros
 - [ ] Busca por nome do cuidador
@@ -49,12 +48,6 @@ Realizar revisão geral do código e validar o funcionamento das principais func
 - [ ] Envio de mensagens
 - [ ] Exibição de histórico de conversas
 - [ ] Notificações de novas mensagens
-
-### 💳 Pagamentos
-- [ ] Integração com Stripe
-- [ ] Adição e remoção de cartões
-- [ ] Processamento de pagamento seguro
-- [ ] Histórico de transações
 
 ### 🔔 Notificações
 - [ ] Push notifications

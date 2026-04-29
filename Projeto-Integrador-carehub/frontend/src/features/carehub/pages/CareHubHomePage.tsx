@@ -1,15 +1,17 @@
 import { Box, Typography, Paper, Container, Alert, Button, Card, CardContent, Stack, Chip, Badge } from '@mui/material';
 import '../components/carehub-accessibility.css';
 import { CareHubModuleGrid } from '../components/CareHubModuleGrid';
-import { Favorite, CheckCircle, Cancel, Star, RateReview } from '@mui/icons-material';
+import { Favorite, CheckCircle, Cancel, Star, RateReview, Home } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { initializeAuthToken, getUser, getUserRole, isCliente, getUserId, checkAndCacheUserType } from '../components/auth';
 import http from '../libHttp';
 import dayjs from 'dayjs';
 import { agendamentosApi } from '../api';
 import { AvaliacaoModal } from '../components/AvaliacaoModal';
+import { useNavigate } from 'react-router-dom';
 
 export default function CareHubHomePage() {
+  const navigate = useNavigate();
   const [_authStatus, setAuthStatus] = useState<'checking' | 'authenticated' | 'unauthenticated'>('checking');
   const [userInfo, setUserInfo] = useState<any>(null);
   const [repropostas, setRepropostas] = useState<any[]>([]);
@@ -28,7 +30,7 @@ export default function CareHubHomePage() {
       await checkAndCacheUserType();
       const ehCliente = isCliente();
       setIsUserCliente(ehCliente);
-      
+
       // Obter userId após inicialização
       const currentUserId = getUserId();
       setUserId(currentUserId);
@@ -44,7 +46,7 @@ export default function CareHubHomePage() {
         setAuthStatus('unauthenticated');
       }
     };
-    
+
     inicializar();
   }, []);
 
@@ -153,12 +155,12 @@ export default function CareHubHomePage() {
         />
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <Box sx={{ 
-            display: 'flex', 
+          <Box sx={{
+            display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'flex-start', sm: 'center' }, 
-            gap: { xs: 2, sm: 2, md: 3 }, 
-            mb: { xs: 2, md: 3 } 
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: { xs: 2, sm: 2, md: 3 },
+            mb: { xs: 2, md: 3 }
           }}>
             <Box
               sx={{
@@ -214,6 +216,24 @@ export default function CareHubHomePage() {
             Conectando cuidadores profissionais e famílias com cuidado, segurança e dedicação.
             Escolha o serviço que você precisa abaixo.
           </Typography>
+          <Box sx={{ mt: 3 }}>
+            <Button
+              variant="contained"
+              startIcon={<Home />}
+              onClick={() => navigate('/home')}
+              sx={{
+                bgcolor: 'rgba(255,255,255,0.2)',
+                color: 'white',
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,0.3)',
+                },
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+              }}
+            >
+              Voltar para a Página Inicial
+            </Button>
+          </Box>
         </Box>
       </Paper>
 
@@ -226,15 +246,15 @@ export default function CareHubHomePage() {
           <Typography variant="body2" gutterBottom sx={{ display: { xs: 'none', sm: 'block' } }}>
             O cuidador propôs uma nova data. Revise e confirme abaixo:
           </Typography>
-          
+
           <Stack spacing={2} sx={{ mt: 2 }}>
             {repropostas.map((ag) => (
               <Card key={ag.id} variant="outlined">
                 <CardContent sx={{ p: { xs: 1.5, sm: 2 }, '&:last-child': { pb: { xs: 1.5, sm: 2 } } }}>
-                  <Stack 
-                    direction={{ xs: 'column', sm: 'row' }} 
-                    justifyContent="space-between" 
-                    alignItems={{ xs: 'stretch', sm: 'flex-start' }} 
+                  <Stack
+                    direction={{ xs: 'column', sm: 'row' }}
+                    justifyContent="space-between"
+                    alignItems={{ xs: 'stretch', sm: 'flex-start' }}
                     gap={2}
                   >
                     <Box sx={{ minWidth: 0 }}>
@@ -251,7 +271,7 @@ export default function CareHubHomePage() {
                         <Chip label={ag.tipoAtendimento} size="small" sx={{ mt: 1 }} />
                       )}
                     </Box>
-                    
+
                     <Stack direction="row" gap={1} sx={{ flexShrink: 0, justifyContent: { xs: 'flex-end', sm: 'flex-start' } }}>
                       <Button
                         variant="contained"
@@ -284,11 +304,11 @@ export default function CareHubHomePage() {
 
       {/* 🌟 Notificações de Avaliação Pendente - Estilo Uber/99 */}
       {avaliacoesPendentes.length > 0 && (
-        <Alert 
-          severity="info" 
+        <Alert
+          severity="info"
           icon={<Badge badgeContent={avaliacoesPendentes.length} color="error"><RateReview /></Badge>}
-          sx={{ 
-            mb: { xs: 2, md: 3 }, 
+          sx={{
+            mb: { xs: 2, md: 3 },
             '& .MuiAlert-message': { width: '100%' },
             background: 'linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%)',
             border: '2px solid #ffc107',
@@ -301,25 +321,25 @@ export default function CareHubHomePage() {
           <Typography variant="body2" gutterBottom color="text.secondary">
             Você tem {avaliacoesPendentes.length} atendimento(s) concluído(s) aguardando sua avaliação. Sua opinião ajuda outros clientes!
           </Typography>
-          
+
           <Stack spacing={2} sx={{ mt: 2 }}>
             {avaliacoesPendentes.slice(0, 3).map((ag) => (
-              <Card 
-                key={ag.id} 
+              <Card
+                key={ag.id}
                 variant="outlined"
-                sx={{ 
+                sx={{
                   transition: 'all 0.2s ease',
-                  '&:hover': { 
+                  '&:hover': {
                     boxShadow: 3,
                     borderColor: '#ffc107',
                   }
                 }}
               >
                 <CardContent sx={{ p: { xs: 1.5, sm: 2 }, '&:last-child': { pb: { xs: 1.5, sm: 2 } } }}>
-                  <Stack 
-                    direction={{ xs: 'column', sm: 'row' }} 
-                    justifyContent="space-between" 
-                    alignItems={{ xs: 'stretch', sm: 'center' }} 
+                  <Stack
+                    direction={{ xs: 'column', sm: 'row' }}
+                    justifyContent="space-between"
+                    alignItems={{ xs: 'stretch', sm: 'center' }}
                     gap={2}
                   >
                     <Box sx={{ minWidth: 0 }}>
@@ -330,22 +350,22 @@ export default function CareHubHomePage() {
                         Concluído em {dayjs(ag.dataHoraFim).format('DD/MM/YYYY [às] HH:mm')}
                       </Typography>
                       {ag.tipoAtendimento && (
-                        <Chip 
-                          label={ag.tipoAtendimento.replace('_', ' ')} 
-                          size="small" 
-                          sx={{ mt: 1 }} 
+                        <Chip
+                          label={ag.tipoAtendimento.replace('_', ' ')}
+                          size="small"
+                          sx={{ mt: 1 }}
                           color="primary"
                           variant="outlined"
                         />
                       )}
                     </Box>
-                    
+
                     <Button
                       variant="contained"
                       size="medium"
                       startIcon={<Star />}
                       onClick={() => abrirAvaliacaoModal(ag)}
-                      sx={{ 
+                      sx={{
                         background: 'linear-gradient(135deg, #ffc107 0%, #ffb300 100%)',
                         color: '#000',
                         fontWeight: 600,
@@ -361,7 +381,7 @@ export default function CareHubHomePage() {
                 </CardContent>
               </Card>
             ))}
-            
+
             {avaliacoesPendentes.length > 3 && (
               <Typography variant="body2" color="text.secondary" textAlign="center">
                 + {avaliacoesPendentes.length - 3} mais avaliação(ões) pendente(s)
