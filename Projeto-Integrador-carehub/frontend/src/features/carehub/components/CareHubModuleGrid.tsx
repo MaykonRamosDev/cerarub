@@ -194,7 +194,7 @@ export function CareHubModuleGrid() {
   // Isso evita bloquear a UI se o usuário estiver autenticado via token mas o userId
   // não estiver presente no localStorage por alguma razão.
   return (
-    <Box>
+    <Box sx={{ mt: 2 }}>
       <Box
         sx={{
           display: 'grid',
@@ -203,7 +203,7 @@ export function CareHubModuleGrid() {
             sm: '1fr 1fr',
             md: '1fr 1fr 1fr',
           },
-          gap: 2,
+          gap: { xs: 3, md: 4 },
         }}
       >
         {modules.map((m) => (
