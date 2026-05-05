@@ -9,6 +9,7 @@ import {
   Assignment,
   AccessTime,
   History,
+  HelpOutline,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -130,6 +131,12 @@ export function CareHubModuleGrid() {
       desc: 'Converse com cuidadores',
       to: '/carehub/chat',
     },
+    {
+      icon: <HelpOutline sx={{ fontSize: 40 }} />,
+      title: 'Precisa de ajuda?',
+      desc: 'Veja como utilizar o Sistema',
+      to: '/carehub/ajuda',
+    },
   ];
 
   // Módulos do Cuidador (João - ID 3)
@@ -181,6 +188,12 @@ export function CareHubModuleGrid() {
       title: 'Mensagens',
       desc: 'Converse com clientes',
       to: '/carehub/chat',
+    },
+    {
+      icon: <HelpOutline sx={{ fontSize: 40 }} />,
+      title: 'Precisa de ajuda?',
+      desc: 'Veja como utilizar o Sistema',
+      to: '/carehub/ajuda',
     },
   ];
 

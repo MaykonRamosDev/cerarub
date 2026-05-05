@@ -11,7 +11,8 @@ import {
   ProntuariosClientesPage,
   RegistroAcompanhamentoPage,
   ProximosAtendimentosPage,
-  HistoricoAtendimentosPage
+  HistoricoAtendimentosPage,
+  CareHubAjudaPage
 } from '../index';
 
 export function CareHubRoutes() {
@@ -27,6 +28,7 @@ export function CareHubRoutes() {
       <Route path="proximos" element={<ProximosAtendimentosPage />} />
       <Route path="historico-atendimentos" element={<HistoricoAtendimentosPage />} />
       <Route path="chat" element={<ChatPage />} />
+      <Route path="ajuda" element={<CareHubAjudaPage />} />
 
       {/* Rotas do Cliente */}
       <Route path="cuidadores" element={<CuidadoresPage />} />

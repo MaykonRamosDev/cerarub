@@ -7,6 +7,7 @@ export { default as AgendamentosPage } from './pages/AgendamentosPage';
 export { default as ProntuarioPage } from './pages/ProntuarioPage';
 export { default as AvaliacoesPage } from './pages/AvaliacoesPage';
 export { default as ChatPage } from './pages/ChatPage';
+export { default as CareHubAjudaPage } from './pages/CareHubAjudaPage';
 
 // Páginas do Cuidador (João Cuidador - ID 3)
 export { MeusAgendamentosPage } from './pages/MeusAgendamentosPage';
