@@ -116,75 +116,78 @@ export default function CareHubHomePage() {
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 1, sm: 2 }, px: { xs: 1, sm: 2, md: 3 } }}>
       <Paper
-        elevation={0}
+        elevation={4}
         sx={{
-          p: { xs: 2.5, sm: 3, md: 5 },
-          mb: { xs: 2, sm: 3, md: 4 },
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          p: { xs: 3, sm: 4, md: 6 },
+          mb: { xs: 3, sm: 4, md: 5 },
+          background: 'linear-gradient(135deg, #0d47a1 0%, #42a5f5 100%)',
           color: 'white',
-          borderRadius: { xs: 2, sm: 3, md: 4 },
+          borderRadius: { xs: 3, sm: 4, md: 5 },
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 12px 40px rgba(102, 126, 234, 0.3)'
+          boxShadow: '0 16px 40px rgba(13, 71, 161, 0.25)'
         }}
       >
-        {/* Decoração de fundo - esconder em telas pequenas */}
+        {/* Soft background circles for modern look */}
         <Box
           sx={{
             position: 'absolute',
-            top: { xs: -60, md: -100 },
-            right: { xs: -60, md: -100 },
-            width: { xs: 150, sm: 200, md: 300 },
-            height: { xs: 150, sm: 200, md: 300 },
+            top: -120,
+            right: -100,
+            width: 400,
+            height: 400,
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.1)',
-            display: { xs: 'none', sm: 'block' }
+            background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%)',
+            display: { xs: 'none', sm: 'block' },
+            pointerEvents: 'none'
           }}
         />
         <Box
           sx={{
             position: 'absolute',
-            bottom: { xs: -50, md: -80 },
-            left: { xs: -50, md: -80 },
-            width: { xs: 120, sm: 180, md: 250 },
-            height: { xs: 120, sm: 180, md: 250 },
+            bottom: -80,
+            left: -80,
+            width: 300,
+            height: 300,
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.05)',
-            display: { xs: 'none', sm: 'block' }
+            background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)',
+            display: { xs: 'none', sm: 'block' },
+            pointerEvents: 'none'
           }}
         />
 
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
+        <Box sx={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Box sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: { xs: 'flex-start', sm: 'center' },
-            gap: { xs: 2, sm: 2, md: 3 },
-            mb: { xs: 2, md: 3 }
+            gap: { xs: 2.5, sm: 3, md: 4 }
           }}>
             <Box
               sx={{
-                bgcolor: 'rgba(255,255,255,0.2)',
-                borderRadius: { xs: 2, md: 3 },
-                p: { xs: 1.5, md: 2 },
+                bgcolor: 'rgba(255,255,255,0.15)',
+                borderRadius: '50%',
+                p: { xs: 2, md: 3 },
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 backdropFilter: 'blur(10px)',
-                flexShrink: 0
+                flexShrink: 0,
+                border: '4px solid rgba(255,255,255,0.3)',
+                boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
               }}
             >
-              <Favorite sx={{ fontSize: { xs: 36, sm: 44, md: 56 }, filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))' }} />
+              <Favorite sx={{ fontSize: { xs: 48, sm: 56, md: 72 }, color: '#ffb74d', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))' }} />
             </Box>
             <Box sx={{ minWidth: 0, width: '100%' }}>
               <Typography
                 variant="h1"
                 sx={{
                   color: 'white',
-                  fontSize: { xs: '1.4rem', sm: '1.75rem', md: '2.5rem', lg: '3rem' },
-                  fontWeight: 'bold',
-                  mb: 0.5,
-                  textShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                  fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3rem', lg: '3.5rem' },
+                  fontWeight: 800,
+                  mb: 1,
+                  textShadow: '0 2px 8px rgba(0,0,0,0.2)',
                   wordBreak: 'break-word',
                   lineHeight: 1.2
                 }}
@@ -192,43 +195,64 @@ export default function CareHubHomePage() {
                 {userInfo ? `Olá, ${userInfo.name}!` : 'Bem-vindo ao CareHub'}
               </Typography>
               <Typography
-                variant="h6"
+                variant="h5"
                 sx={{
-                  color: 'rgba(255,255,255,0.95)',
-                  fontWeight: 'medium',
-                  fontSize: { xs: '0.9rem', sm: '1rem', md: '1.15rem' }
+                  color: '#e3f2fd',
+                  fontWeight: 600,
+                  fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
+                  textShadow: '0 1px 4px rgba(0,0,0,0.1)'
                 }}
               >
                 Sistema de Acompanhamento de Idosos
               </Typography>
             </Box>
           </Box>
-          <Typography
-            variant="body1"
-            sx={{
-              color: 'rgba(255,255,255,0.9)',
-              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
-              maxWidth: '600px',
-              lineHeight: 1.6,
-              display: { xs: 'none', sm: 'block' }
+
+          <Paper 
+            elevation={0}
+            sx={{ 
+              bgcolor: 'rgba(0, 0, 0, 0.15)', 
+              borderRadius: 3, 
+              p: { xs: 2, sm: 3 },
+              backdropFilter: 'blur(5px)',
+              maxWidth: '800px',
+              borderLeft: '4px solid #ffb74d'
             }}
           >
-            Conectando cuidadores profissionais e famílias com cuidado, segurança e dedicação.
-            Escolha o serviço que você precisa abaixo.
-          </Typography>
-          <Box sx={{ mt: 3 }}>
+            <Typography
+              variant="body1"
+              sx={{
+                color: 'rgba(255,255,255,0.95)',
+                fontSize: { xs: '1.05rem', sm: '1.15rem', md: '1.25rem' },
+                lineHeight: 1.6,
+                fontWeight: 500
+              }}
+            >
+              Conectando cuidadores profissionais e famílias com cuidado, segurança e dedicação.
+              Escolha o serviço que você precisa nas opções abaixo.
+            </Typography>
+          </Paper>
+
+          <Box sx={{ mt: 1 }}>
             <Button
               variant="contained"
+              size="large"
               startIcon={<Home />}
               onClick={() => navigate('/home')}
               sx={{
-                bgcolor: 'rgba(255,255,255,0.2)',
-                color: 'white',
+                bgcolor: 'white',
+                color: '#0d47a1',
+                fontWeight: 700,
+                fontSize: '1rem',
+                borderRadius: 8,
+                px: 4,
+                py: 1.5,
                 '&:hover': {
-                  bgcolor: 'rgba(255,255,255,0.3)',
+                  bgcolor: '#e3f2fd',
+                  transform: 'translateY(-2px)',
                 },
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                transition: 'all 0.2s ease',
+                boxShadow: '0 6px 12px rgba(0,0,0,0.15)'
               }}
             >
               Voltar para a Página Inicial
